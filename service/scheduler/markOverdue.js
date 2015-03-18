@@ -10,7 +10,7 @@ function markOverdue() {
         console.log('# of results: '+results.length);
         results.forEach(function(item) {
             console.log('checking item: '+item);
-            if(item.duedate < today) {
+            if(!item.duedate && item.duedate < today) {
                 console.log('item duedate: '+item.duedate);
                 item.overdue = true;
                 todoItems.update(item);
