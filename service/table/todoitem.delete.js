@@ -3,6 +3,6 @@ function del(id, user, request) {
         request.execute();
     }
     else {
-        request.respond(401, statusCodes.UNAUTHORIZED);
+        request.respond(statusCodes.UNAUTHORIZED);
     }
 }
