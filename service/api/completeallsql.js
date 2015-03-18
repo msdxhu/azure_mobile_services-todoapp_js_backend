@@ -1,11 +1,12 @@
 exports.post = function(request, response) {
-    // Use "request.service" to access features of your mobile service, e.g.:
-    //   var tables = request.service.tables;
-    //   var push = request.service.push;
-
-    response.send(statusCodes.OK, { message : 'Hello World!' });
-};
-
-exports.get = function(request, response) {
-    response.send(statusCodes.OK, { message : 'Hello World!' });
+    var mssql = request.service.mssql;
+    var sql = 
+        "UPDATE todoitem SET complete = 1 " +
+        "WHERE complete = 0; SELECT @@ROWCOUNT as count";
+    mssql.query(sql, {
+        success: function(results) {
+            if(results.length == 1)
+                response.send(200, results[0]);
+        }
+    });
 };
