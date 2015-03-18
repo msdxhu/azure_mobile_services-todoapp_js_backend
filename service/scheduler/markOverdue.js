@@ -1,3 +1,16 @@
 function markOverdue() {
-    console.warn("You are running an empty scheduled job. Update the script for job 'markOverdue' or disable the job.");
-}
+    var today = new Date();
+    var todoItems = tables.getTable('TodoItem');
+    todoItems.read({
+        success: markOverdue
+    });
+        
+    function markOverdue(results) {
+        results.forEach(function(item) {
+            if(item.dueDate > today) {
+                item.overdue = true;
+                todoItems.update(item);
+            }
+        });
+    }
+  }
