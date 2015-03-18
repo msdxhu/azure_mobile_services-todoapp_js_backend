@@ -3,7 +3,7 @@ exports.post = function(request, response) {
     var tables = request.service.tables;
     //   var push = request.service.push;
     var user = request.user;
-    var todoItem = tables.table('TodoItem');
+    var todoItem = tables.getTable('TodoItem');
     
     todoItem.where({
         userId: user.userId, 
