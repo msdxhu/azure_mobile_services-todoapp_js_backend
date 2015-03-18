@@ -19,5 +19,5 @@ exports.post = function(request, response) {
         });
     }
     
-    response.send(statusCodes.OK);
+    response.send(statusCodes.OK, { message: "done" });
 };
