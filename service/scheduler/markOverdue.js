@@ -2,10 +2,10 @@ function markOverdue() {
     var today = new Date();
     var todoItems = tables.getTable('TodoItem');
     console.log('job started: '+today);
-    todoItems.read({
+    todoItems.where({overdue: false}).read({
         success: markOverdue
     });
-        
+
     function markOverdue(results) {
         console.log('# of results: '+results.length);
         results.forEach(function(item) {
